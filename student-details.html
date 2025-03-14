@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="src/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html" style="text-decoration: none; color: inherit;">
+            <span>Student</span>Portfolio
+          </a>
+        </div>
+        <div class="flex gap-2">
+          <a href="#" id="viewPortfolioBtn" class="btn btn-outline">
+            <i class="bi bi-person-vcard"></i> View Portfolio
+          </a>
+          <button id="editStudentBtn" class="btn btn-primary">
+            <i class="bi bi-pencil"></i> Edit Profile
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container fade-in">
+    <div class="section">
+      <a href="index.html" class="btn btn-outline mb-4">
+        <i class="bi bi-arrow-left"></i> Back to Students
+      </a>
+      
+      <div class="card p-6">
+        <div class="flex" style="gap: 2rem; flex-wrap: wrap;">
+          <div style="flex: 0 0 200px; display: flex; justify-content: center;">
+            <img id="studentPhoto" src="https://via.placeholder.com/200?text=No+Photo" alt="Student" class="avatar" style="width: 200px; height: 200px;">
+          </div>
+          <div style="flex: A1; min-width: 300px;">
+            <h1 id="studentName" class="text-3xl mb-2">Loading...</h1>
+            <p id="studentCode" class="chip mb-4">CODE</p>
+            <p id="studentEmail" class="mb-2">
+              <i class="bi bi-envelope"></i> <a href="mailto:email@example.com">email@example.com</a>
+            </p>
+            <p id="studentGithub" class="mb-4">
+              <i class="bi bi-github"></i> <a href="#" target="_blank">GitHub Profile</a>
+            </p>
+            <p id="studentDesc" class="text-lg">Loading student description...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl">Technologies & Skills</h2>
+        <button id="addTechnologyBtn" class="btn btn-primary">
+          <i class="bi bi-plus"></i> Add Technology
+        </button>
+      </div>
+      
+      <div class="card">
+        <table class="table" id="technologiesTable">
+          <thead>
+            <tr>
+              <th style="width: 70px;"></th>
+              <th>Technology</th>
+              <th>Skill Level</th>
+              <th style="width: 120px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="technologiesList">
+            <tr>
+              <td colspan="4" class="text-center p-4">
+                <div class="loading"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add/Edit Technology Modal -->
+  <div id="technologyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="techModalTitle" class="modal-title">Add New Technology</h2>
+        <button class="modal-close" id="closeTechModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="technologyForm">
+          <input type="hidden" id="editTechMode" value="add">
+          <input type="hidden" id="currentTechCode" value="">
+          
+          <div class="form-group">
+            <label for="technologySelect" class="label">Technology</label>
+            <select id="technologySelect" class="input">
+              <option value="">Select a technology...</option>
+              <!-- Technologies will be populated here -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="skillLevel" class="label">Skill Level (1-5)</label>
+            <div class="star-rating" id="skillLevelRating">
+              <i class="bi bi-star star" data-value="1"></i>
+              <i class="bi bi-star star" data-value="2"></i>
+              <i class="bi bi-star star" data-value="3"></i>
+              <i class="bi bi-star star" data-value="4"></i>
+              <i class="bi bi-star star" data-value="5"></i>
+            </div>
+            <input type="hidden" id="skillLevel" value="0">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelTechBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveTechnologyBtn">Save Technology</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="scale-in" style="position: fixed; bottom: 20px; right: 20px; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: var(--radius); padding: 1rem; max-width: 300px; z-index: 100; transform: translateY(150%); transition: transform 0.3s ease;">
+    <div class="flex items-center gap-2">
+      <i id="toastIcon" class="bi bi-check-circle" style="color: hsl(var(--primary))"></i>
+      <span id="toastMessage">Operation successful</span>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div id="confirmDialog" class="modal">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Confirm Action</h2>
+        <button class="modal-close" id="closeConfirmDialog">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmMessage">Are you sure you want to proceed with this action?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelConfirmBtn">Cancel</button>
+        <button class="btn btn-primary" id="confirmActionBtn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/students.js" type="module"></script>
+</body>
+</html>

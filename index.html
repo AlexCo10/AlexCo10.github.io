@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio System</title>
+  <link rel="stylesheet" href="src/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">
+          <span>Student</span>Portfolio
+        </div>
+        <button id="addStudentBtn" class="btn btn-primary">
+          <i class="bi bi-plus"></i> Add Student
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container fade-in">
+    <div class="section">
+      <h1 class="text-3xl mb-4">Students List</h1>
+      
+      <div id="studentsContainer" class="grid">
+        <!-- Students will be populated here -->
+        <div class="card p-4 flex items-center justify-center">
+          <div class="loading"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add/Edit Student Modal -->
+  <div id="studentModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle" class="modal-title">Add New Student</h2>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="studentForm">
+          <input type="hidden" id="editMode" value="add">
+          
+          <div class="form-group">
+            <label for="studentCode" class="label">Student Code (7 chars)</label>
+            <input type="text" id="studentCode" class="input" maxlength="7" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="studentName" class="label">Full Name</label>
+            <input type="text" id="studentName" class="input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="studentEmail" class="label">Email</label>
+            <input type="email" id="studentEmail" class="input">
+          </div>
+          
+          <div class="form-group">
+            <label for="studentPhoto" class="label">Photo URL</label>
+            <input type="url" id="studentPhoto" class="input">
+          </div>
+          
+          <div class="form-group">
+            <label for="studentDesc" class="label">Description</label>
+            <textarea id="studentDesc" class="textarea"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="studentGithub" class="label">GitHub Link</label>
+            <input type="url" id="studentGithub" class="input">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveStudentBtn">Save Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="scale-in" style="position: fixed; bottom: 20px; right: 20px; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: var(--radius); padding: 1rem; max-width: 300px; z-index: 100; transform: translateY(150%); transition: transform 0.3s ease;">
+    <div class="flex items-center gap-2">
+      <i id="toastIcon" class="bi bi-check-circle" style="color: hsl(var(--primary))"></i>
+      <span id="toastMessage">Operation successful</span>
+    </div>
+  </div>
+
+  <script src="src/main.js" type="module"></script>
+</body>
+</html>

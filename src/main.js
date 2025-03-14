@@ -22,6 +22,11 @@ const addStudentBtn = document.getElementById('addStudentBtn');
 const toast = document.getElementById('toast');
 const toastMessage = document.getElementById('toastMessage');
 const toastIcon = document.getElementById('toastIcon');
+const searchInput = document.getElementById('searchInput');
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+// Store all students for filtering
+let allStudents = [];
 
 // Load students when page loads
 window.addEventListener('DOMContentLoaded', loadStudents);
@@ -31,6 +36,37 @@ addStudentBtn.addEventListener('click', () => openModal('add'));
 closeModal.addEventListener('click', hideModal);
 cancelBtn.addEventListener('click', hideModal);
 saveStudentBtn.addEventListener('click', saveStudent);
+
+// Search functionality
+searchInput.addEventListener('input', handleSearch);
+clearSearchBtn.addEventListener('click', clearSearch);
+
+function handleSearch() {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  
+  // Show/hide clear button
+  clearSearchBtn.style.display = searchTerm ? 'flex' : 'none';
+  
+  if (!searchTerm) {
+    renderStudents(allStudents);
+    return;
+  }
+  
+  const filteredStudents = allStudents.filter(student => 
+    (student.name && student.name.toLowerCase().includes(searchTerm)) || 
+    (student.email && student.email.toLowerCase().includes(searchTerm)) || 
+    (student.code && student.code.toLowerCase().includes(searchTerm))
+  );
+  
+  renderStudents(filteredStudents);
+}
+
+function clearSearch() {
+  searchInput.value = '';
+  clearSearchBtn.style.display = 'none';
+  renderStudents(allStudents);
+  searchInput.focus();
+}
 
 // Fetch all students from the API
 async function loadStudents() {
@@ -46,8 +82,8 @@ async function loadStudents() {
       throw new Error('Failed to fetch students');
     }
     
-    const students = await response.json();
-    renderStudents(students);
+    allStudents = await response.json();
+    renderStudents(allStudents);
   } catch (error) {
     console.error('Error loading students:', error);
     showToast('Failed to load students', 'error');

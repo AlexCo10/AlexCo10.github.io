@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,20 @@
         <div class="logo">
           <span>Student</span>Portfolio
         </div>
-        <button id="addStudentBtn" class="btn btn-primary">
-          <i class="bi bi-plus"></i> Add Student
-        </button>
+        <div class="flex items-center gap-4">
+          <div class="search-container">
+            <div class="search-wrapper">
+              <i class="bi bi-search search-icon"></i>
+              <input type="text" id="searchInput" class="input search-input" placeholder="Search by name, email or code...">
+              <button id="clearSearchBtn" class="search-clear-btn" style="display: none;">
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+          </div>
+          <button id="addStudentBtn" class="btn btn-primary">
+            <i class="bi bi-plus"></i> Add Student
+          </button>
+        </div>
       </nav>
     </div>
   </header>
@@ -91,6 +103,8 @@
     </div>
   </div>
 
+  <!-- Add the required Lovable script tag -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   <script src="src/main.js" type="module"></script>
 </body>
 </html>

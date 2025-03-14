@@ -6,24 +6,24 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
     --primary: 0 85% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 70% 95%;
-    --secondary-foreground: 0 75% 35%;
-    --muted: 0 10% 90%;
-    --muted-foreground: 0 0% 45%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
     --accent: 0 80% 90%;
     --accent-foreground: 0 80% 35%;
     --destructive: 0 80% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 10% 85%;
-    --input: 0 10% 85%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
     --ring: 0 85% 50%;
     --radius: 0.75rem;
   }
@@ -87,16 +87,16 @@
 }
 
 .card {
-  background-color: #f6f6f7;
+  background-color: #222;
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(220, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(220, 0, 0, 0.15);
 }
 
 .btn {
@@ -140,7 +140,8 @@
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
   border: 1px solid hsl(var(--border));
-  background-color: white;
+  background-color: #333;
+  color: white;
   font-size: 1rem;
   transition: border-color 0.2s ease;
 }
@@ -156,7 +157,8 @@
   padding: 0.75rem 1rem;
   border-radius: var(--radius);
   border: 1px solid hsl(var(--border));
-  background-color: white;
+  background-color: #333;
+  color: white;
   font-size: 1rem;
   transition: border-color 0.2s ease;
   min-height: 120px;
@@ -177,7 +179,7 @@
 }
 
 .header {
-  background-color: white;
+  background-color: #111;
   padding: 1.5rem 0;
   position: sticky;
   top: 0;
@@ -231,6 +233,7 @@
   border-radius: 50%;
   margin: 0 auto;
   display: block;
+  border: 3px solid hsl(var(--primary));
 }
 
 .star-rating {
@@ -240,7 +243,7 @@
 }
 
 .star {
-  color: #ccc;
+  color: #444;
   font-size: 1.2rem;
 }
 
@@ -305,7 +308,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -321,7 +324,7 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: #222;
   border-radius: var(--radius);
   max-width: 600px;
   width: 90%;
@@ -508,4 +511,58 @@
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+/* Search styles */
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+}
+
+.search-input {
+  padding-left: 36px;
+  background-color: hsl(var(--secondary));
+  border-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.3);
+  background-color: hsl(var(--secondary));
+}
+
+.search-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: hsl(var(--muted-foreground));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.search-clear-btn:hover {
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--muted) / 0.5);
 }
